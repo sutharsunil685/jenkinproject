@@ -12,14 +12,20 @@ pipeline {
             steps {
                 sh '''
                     ls -la
+                '''
+            }
+        }
+        stage('build') {
+            steps{
+                sh '''
                     node --version
                     echo 'with docker'
                     npm --version
+                    npm install
                     npm ci
                     npm run build
                     ls -la
                 '''
-                sh ''
             }
         }
     }
